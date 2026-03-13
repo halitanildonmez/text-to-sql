@@ -1,5 +1,7 @@
 # Text-to-SQL
 
+![Demo with charts](demo3.gif)
+
 A local AI-powered Streamlit app that converts plain-English questions into SQL queries and runs them against a DuckDB database.
 
 ---
