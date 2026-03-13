@@ -1,10 +1,10 @@
 # Text-to-SQL
 
+A local AI-powered Streamlit app that converts plain-English questions into SQL queries, runs them against a DuckDB database, and automatically generates charts from the results — all using a local LLM with no API keys required.
+
 ![Demo with charts](demo3.gif)
 
 ![Demo with error handling](demo4.gif)
-
-A local AI-powered Streamlit app that converts questions into SQL queries and runs them against a DuckDB database. Visualizes the results with plotly by getting the resulting dataframe and feeding it to an LLM agent.
 
 ---
 
@@ -15,6 +15,7 @@ A local AI-powered Streamlit app that converts questions into SQL queries and ru
 | UI | [Streamlit](https://streamlit.io) |
 | LLM | [Ollama](https://ollama.com) + `gemma3:1b` |
 | Database | [DuckDB](https://duckdb.org) (TPC-H benchmark data) |
+| Visualization | [Plotly](https://plotly.com/python/) |
 | Data validation | [Pydantic](https://docs.pydantic.dev) |
 
 ---
@@ -65,6 +66,22 @@ Streamlit will open in a new tab automatically
 5. The query is executed against DuckDB and results are displayed as a dataframe
 6. If execution fails, the error is fed back into the next prompt (up to 3 retries)
 7. A visualization agent decides what to visualize
+
+---
+
+## Project Structure
+ 
+```
+├── app_ui.py                # Streamlit UI
+├── llm_agent.py             # SQL generation agent with retry logic
+├── viz_agent.py             # Chart selection and rendering agent
+├── error_agent.py           # Error analysis agent
+├── schema_loader.py         # DuckDB setup and schema introspection
+├── chat_response_model.py   # Pydantic model for SQL + explanation response
+├── visualization_model.py   # Pydantic model for chart config response
+├── error_analysis_model.py  # Pydantic model for error analysis response
+└── requirements.txt
+```
 
 ---
 
