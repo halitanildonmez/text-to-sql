@@ -2,7 +2,7 @@
 
 ![Demo with charts](demo3.gif)
 
-![Demo with error handling](demo3.gif)
+![Demo with error handling](demo4.gif)
 
 A local AI-powered Streamlit app that converts questions into SQL queries and runs them against a DuckDB database. Visualizes the results with plotly by getting the resulting dataframe and feeding it to an LLM agent.
 
