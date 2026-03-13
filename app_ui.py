@@ -2,6 +2,7 @@ import streamlit as st
 from llm_agent import LlmAgent
 from schema_loader import Database
 import time
+from viz_agent import VizChartAgent
 
 st.set_page_config(
     page_title="Text → SQL",
@@ -40,6 +41,15 @@ def main():
             if "df" in result_set:
                 st.subheader("Results")
                 st.dataframe(result_set["df"])
+                with st.spinner("Generating chart..."):
+                    try:
+                        fig = VizChartAgent(result_set["df"]).plot()
+                        if fig:
+                            st.subheader("Chart")
+                            st.plotly_chart(fig, use_container_width=True)
+                    except Exception as e:
+                        print(e)
+                        pass  # chart is best-effort, never blocks the result
                 st.session_state.history.append({
                     "question": prompt,
                     "sql": result_set["sql"],
